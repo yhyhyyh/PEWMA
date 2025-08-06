@@ -127,20 +127,3 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
     # print('ind=', ind)
     # print('FAR=', FAR)
     return ARL
-print(calculate_ARL(A=0.1, omega=0.5, theta0=1, rep=2000, T=1000, tau=50, shift=0.01, Lambda=0.1, p=2, hp=0.687255859375))
-
-# 5.4453125
-# 5.33013916015625
-# 4.586174011230469
-# 4.703125 ARL0
-
-# 5.982933044433594500
-
-# 4.864006042480469 p=5 lambda=0.05
-# 5.6250762939453125 p=5 lambda=0.15
-# 5.6252288818359375 p=5 lambda=0.2
-# 5.5892181396484375 p=5 lambda=0.25
-# 5.527343153953552 p=5 lambda=0.3
-
-# 0.687255859375 p=2
-# 2.6384735107421875 p=4
