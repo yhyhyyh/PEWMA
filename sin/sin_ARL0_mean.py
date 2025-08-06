@@ -17,10 +17,8 @@ def calculate_Boundary(A,omega,theta0, m0, p):
         # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18  
         # nt = np.random.uniform(15,20)  
         theta1=A*(math.sin(omega*i))+theta0
-        # print(theta[i])
         x0 = np.random.poisson(nt * theta1) 
         theta = x0 / nt
-        # print(theta)
         theta_list.append(theta)
         for j in range(p - 1):
             q[j] = np.percentile(theta_list, ((j + 1) / p) * 100) 
@@ -88,4 +86,5 @@ def calculate_ARL(rep,T,tau,Lambda,p,hp):
     print('SDRL=', SDRL)
     print('ind=', ind)
     return ARL
+
 
