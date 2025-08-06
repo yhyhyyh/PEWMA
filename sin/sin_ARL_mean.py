@@ -106,24 +106,15 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
         ARL = sum(S_RL) / ind
         SDRL = np.std(S_RL,ddof=1)
         SE = SDRL / math.sqrt(len(S_RL))
-        # Q10 = np.percentile(S_RL, 10)
-        # Med = np.median(S_RL)
-        # Q90 = np.percentile(S_RL, 90)
-        # FAR = sum(S_RL <= 50, 1) / len(S_RL)
+       
     else:
         ARL = 0
         SDRL = 0
         SE = 0
-        # Q10 = 0
-        # Med = 0
-        # Q90 = 0
-        # FAR = 0
+      
     print('ARL=', ARL)
     print('SE=', SE)
     print('SDRL=', SDRL)
-    # print('Q10=', Q10)
-    # print('Med=', Med)
-    # print('Q90=', Q90)
-    # print('ind=', ind)
-    # print('FAR=', FAR)
+   
     return ARL
+
