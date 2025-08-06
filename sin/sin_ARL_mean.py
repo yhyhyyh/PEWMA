@@ -3,7 +3,6 @@ import math
 import random
 from concurrent.futures import ProcessPoolExecutor
 
-np.random.seed(1)
 
 def calculate_Boundary(A, omega, theta0, m0, p):
     c1 = 13.8065
@@ -15,9 +14,9 @@ def calculate_Boundary(A, omega, theta0, m0, p):
     Y_list = []
 
     for i in range(m0):
-        # nt = 2 * c1 / (1 + np.exp(-(i - c2) / c3))  # 人口规模增加
-        # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18  # 人口规模减少
-        nt = np.random.uniform(15,20)  # 人口规模均匀分布
+        # nt = 2 * c1 / (1 + np.exp(-(i - c2) / c3)) 
+        # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18 
+        nt = np.random.uniform(15,20) 
         theta1 = A * (math.sin(omega * i)) + theta0
         x0 = np.random.poisson(nt * theta1)
         # x0 = x0 + np.random.normal(0, 0.01)
@@ -38,7 +37,7 @@ def calculate_Boundary(A, omega, theta0, m0, p):
         Y_list.append(Y)
     f0 = np.sum(Y_list, axis=0) / m0
     return q, f0
-q,f0=calculate_Boundary(A=0.1, omega=0.5, theta0=1, m0=500, p=2)
+q,f0=calculate_Boundary(A=0.1, omega=0.5, theta0=1, m0=500, p=5)
 
 def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
     global t
@@ -64,9 +63,9 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
             E[:, 0] = f0
             S_obs[:, 0] = S_exp[:, 0] = 0
 
-            # nt[:, t] = 2 * c1 / (1 + np.exp(-(t - c2) / c3))  # 人口规模增加
-            # nt[:, t] = ((c1 / 2.4)/(1 + np.exp((t - c2) / c3))) +18  # 人口规模减少
-            nt[:, t] = np.random.uniform(15,20)  # 人口规模均匀分布
+            # nt[:, t] = 2 * c1 / (1 + np.exp(-(t - c2) / c3))  
+            # nt[:, t] = ((c1 / 2.4)/(1 + np.exp((t - c2) / c3))) +18 
+            nt[:, t] = np.random.uniform(15,20)  
 
             if t <= tau:
                 x[:, t] = np.random.poisson(nt[:, t] * (A * (math.sin(omega * t)) + theta0))
@@ -98,8 +97,8 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
         else:
             RL = 0
         S_RL.append(RL)
-    for i in range(len(S_RL) - 1, -1, -1):  # 删除0值
-        if S_RL[i] == 0:
+    for i in range(len(S_RL) - 1, -1, -1):  
+        if S_RL[i] == 0
             S_RL = np.delete(S_RL, i)
     # print(S_RL)
     if len(S_RL) > 0:
@@ -117,4 +116,5 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
     print('SDRL=', SDRL)
    
     return ARL
+
 
