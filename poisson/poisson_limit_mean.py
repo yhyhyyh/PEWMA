@@ -1,7 +1,6 @@
 import poisson_ARL_mean
 
 def binary_search(M, hl, hu, A0, e1, e2,rep,T,tau,theta0,shift,Lambda,p):
-    # M-迭代次数；Ll、Lu控制限搜索区间；A0-预先给定的ARL；e1-ARL0的精度；e2-控制线的精度
     global hp
     for i in range(M):
         hp = (hl + hu) / 2
@@ -26,6 +25,7 @@ def binary_search(M, hl, hu, A0, e1, e2,rep,T,tau,theta0,shift,Lambda,p):
             print('The Estimation Accuracy Specified Cannot Be Reached')
     return hp
 if __name__ == "__main__":
-    print(binary_search(M=100, hl=0, hu=5, A0=200, e1=0.1, e2=0.00001, rep=2000,T=1000,tau=50,theta0=1,shift=0,Lambda=0.1,p=4))
+    print(binary_search(M=100, hl=0, hu=5, A0=200, e1=0.1, e2=0.00001, rep=10000,T=1000,tau=50,theta0=1,shift=0,Lambda=0.1,p=5))
     # def binary_search(M, Ll, Lu, A0, e1, e2, rep,T,tau,theta,shift,S,q,p,m0,Lambda):
+
 
