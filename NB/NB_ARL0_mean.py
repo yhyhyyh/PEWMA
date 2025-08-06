@@ -3,8 +3,6 @@ import numpy as np
 import math
 import random
 
-np.random.seed(1)
-
 def calculate_Boundary(c,theta0, m0, p):
 
     c1 = 13.8065
@@ -15,14 +13,14 @@ def calculate_Boundary(c,theta0, m0, p):
     theta_list = []
     Y_list = []
     for i in range(m0):
-        nt = 2 * c1 / (1 + np.exp(-(i - c2) / c3))    # 人口规模增加
-        # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18  # 人口规模减少
+        nt = 2 * c1 / (1 + np.exp(-(i - c2) / c3))   
+        # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18  
         # nt = np.random.uniform(15,20)  # 人口规模均匀分布
-        x0 = np.random.negative_binomial(1/c,1/(1+c*(nt * theta0)))  # 真实的分布是负二项分布
+        x0 = np.random.negative_binomial(1/c,1/(1+c*(nt * theta0))) 
         theta = x0 / nt
         theta_list.append(theta)
         for j in range(p - 1):
-            q[j] = np.percentile(theta_list, ((j + 1) / p) * 100)  # 计算区间分界点
+            q[j] = np.percentile(theta_list, ((j + 1) / p) * 100)  
 
     for i in theta_list:
         Y = np.array(np.zeros((p, 1)))
@@ -37,7 +35,6 @@ def calculate_Boundary(c,theta0, m0, p):
         Y_list.append(Y)
     f0=np.sum(np.array(Y_list), axis=0)/m0
     return q,f0
-# print(calculate_Boundary(c=0.05,theta0=1, m0=500, p=5))
 q,f0=calculate_Boundary(c=0.05,theta0=1, m0=500, p=5)
 
 def calculate_ARL(rep,T,tau,Lambda,p,hp):
@@ -72,7 +69,7 @@ def calculate_ARL(rep,T,tau,Lambda,p,hp):
         else:
             RL = 0
         S_RL.append(RL)
-    for i in range(len(S_RL) - 1, -1, -1):  # 删除0值
+    for i in range(len(S_RL) - 1, -1, -1):  
         if S_RL[i] == 0:
             S_RL = np.delete(S_RL, i)
     # print(S_RL)
@@ -89,3 +86,4 @@ def calculate_ARL(rep,T,tau,Lambda,p,hp):
     print('SDRL=', SDRL)
     print('ind=', ind)
     return ARL
+
