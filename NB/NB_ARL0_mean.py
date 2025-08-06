@@ -15,7 +15,7 @@ def calculate_Boundary(c,theta0, m0, p):
     for i in range(m0):
         nt = 2 * c1 / (1 + np.exp(-(i - c2) / c3))   
         # nt = ((c1 / 2.4)/(1 + np.exp((i - c2) / c3))) +18  
-        # nt = np.random.uniform(15,20)  # 人口规模均匀分布
+        # nt = np.random.uniform(15,20)
         x0 = np.random.negative_binomial(1/c,1/(1+c*(nt * theta0))) 
         theta = x0 / nt
         theta_list.append(theta)
@@ -86,4 +86,5 @@ def calculate_ARL(rep,T,tau,Lambda,p,hp):
     print('SDRL=', SDRL)
     print('ind=', ind)
     return ARL
+
 
