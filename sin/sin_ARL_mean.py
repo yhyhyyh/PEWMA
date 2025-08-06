@@ -19,7 +19,6 @@ def calculate_Boundary(A, omega, theta0, m0, p):
         nt = np.random.uniform(15,20) 
         theta1 = A * (math.sin(omega * i)) + theta0
         x0 = np.random.poisson(nt * theta1)
-        # x0 = x0 + np.random.normal(0, 0.01)
         theta = x0 / nt
         theta_list.append(theta)
         for j in range(p - 1):
@@ -51,7 +50,6 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
 
         nt = np.zeros((1, T + 1))
         x = np.zeros((1, T + 1))
-
         G = np.mat(np.zeros((p, T + 1)))
         E = np.mat(np.zeros((p, T + 1)))
         U = np.mat(np.zeros((1, T + 1)))
@@ -71,7 +69,6 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
                 x[:, t] = np.random.poisson(nt[:, t] * (A * (math.sin(omega * t)) + theta0))
             else:
                 x[:, t] = np.random.poisson(nt[:, t] * (A * (math.sin(omega * t)) + (theta0+shift)))
-            # x[:, t] = x[:, t] + np.random.normal(0, 0.01)
             theta = x[:, t] / nt[:, t]
 
             if theta < q[0]:
@@ -116,5 +113,6 @@ def calculate_ARL(A, omega, theta0, rep, T, tau, shift, Lambda, p, hp):
     print('SDRL=', SDRL)
    
     return ARL
+
 
 
