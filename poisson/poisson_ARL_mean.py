@@ -4,7 +4,7 @@ import random
 from scipy.stats import poisson  # 泊松分布
 from scipy.stats import nbinom
 
-np.random.seed(1)
+
 def calculate_Boundary(theta0, m0, p):
 
     c1 = 13.8065
@@ -36,8 +36,7 @@ def calculate_Boundary(theta0, m0, p):
 
     f0=np.sum(Y_list, axis=0)/m0
     return q,f0
-# print(calculate_Boundary(theta0=1, m0=500, p=5))
-q,f0=calculate_Boundary(theta0=1, m0=500, p=2)
+q,f0=calculate_Boundary(theta0=1, m0=500, p=5)
 
 def calculate_ARL(rep,T,tau,theta0,shift,Lambda,p, hp):
     global t
@@ -61,9 +60,9 @@ def calculate_ARL(rep,T,tau,theta0,shift,Lambda,p, hp):
             E[:, 0] = f0
             S_obs[:, 0] = S_exp[:, 0] = 0
 
-            # nt[:, t] = 2 * c1 / (1 + np.exp(-(t - c2) / c3))    # 人口规模增加
-            # nt[:, t] = ((c1 / 2.4)/(1 + np.exp((t - c2) / c3))) +18  # 人口规模减少
-            nt[:, t] = np.random.uniform(15,20)  # 人口规模均匀分布
+            # nt[:, t] = 2 * c1 / (1 + np.exp(-(t - c2) / c3))   
+            # nt[:, t] = ((c1 / 2.4)/(1 + np.exp((t - c2) / c3))) +18  
+            nt[:, t] = np.random.uniform(15,20)  
             if t <= tau:
                 x[:, t] = np.random.poisson(nt[:, t] * theta0)
             else:
@@ -112,4 +111,5 @@ def calculate_ARL(rep,T,tau,theta0,shift,Lambda,p, hp):
     print('SDRL=', SDRL)
     print('ind=', ind)
     return ARL
+
 
